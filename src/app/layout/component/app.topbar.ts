@@ -12,9 +12,9 @@ import { LayoutService } from '../service/layout.service';
     imports: [RouterModule, CommonModule, StyleClassModule, AppConfigurator],
     template: ` <div class="layout-topbar">
         <div class="layout-topbar-logo-container">
-            <button class="layout-menu-button layout-topbar-action" (click)="layoutService.onMenuToggle()">
+            <!-- <button class="layout-menu-button layout-topbar-action" (click)="layoutService.onMenuToggle()">
                 <i class="pi pi-bars"></i>
-            </button>
+            </button> -->
             <a class="layout-topbar-logo" routerLink="/map-view">
                 <!-- <svg viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -40,7 +40,7 @@ import { LayoutService } from '../service/layout.service';
         </div>
 
         <div class="layout-topbar-actions">
-            <div class="layout-config-menu">
+            <div class="layout-config-menu" style="display: none;">
                 <button type="button" class="layout-topbar-action" (click)="toggleDarkMode()">
                     <i [ngClass]="{ 'pi ': true, 'pi-moon': layoutService.isDarkTheme(), 'pi-sun': !layoutService.isDarkTheme() }"></i>
                 </button>
@@ -60,13 +60,13 @@ import { LayoutService } from '../service/layout.service';
                 </div>
             </div>
 
-            <button class="layout-topbar-menu-button layout-topbar-action" pStyleClass="@next" enterFromClass="hidden" enterActiveClass="animate-scalein" leaveToClass="hidden" leaveActiveClass="animate-fadeout" [hideOnOutsideClick]="true">
+            <button style="display: none;" class="layout-topbar-menu-button layout-topbar-action" pStyleClass="@next" enterFromClass="hidden" enterActiveClass="animate-scalein" leaveToClass="hidden" leaveActiveClass="animate-fadeout" [hideOnOutsideClick]="true">
                 <i class="pi pi-ellipsis-v"></i>
             </button>
 
             <div class="layout-topbar-menu hidden lg:block">
                 <div class="layout-topbar-menu-content">
-                    <button type="button" class="layout-topbar-action">
+                    <!-- <button type="button" class="layout-topbar-action">
                         <i class="pi pi-calendar"></i>
                         <span>Calendar</span>
                     </button>
@@ -77,7 +77,7 @@ import { LayoutService } from '../service/layout.service';
                     <button type="button" class="layout-topbar-action">
                         <i class="pi pi-user"></i>
                         <span>Profile</span>
-                    </button>
+                    </button> -->
                 </div>
             </div>
         </div>

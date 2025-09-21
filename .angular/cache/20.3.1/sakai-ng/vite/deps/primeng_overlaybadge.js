@@ -1,21 +1,19 @@
 import {
   Badge,
   BadgeModule
-} from "./chunk-GH23JGRP.js";
+} from "./chunk-WVZHJMTZ.js";
 import {
   BaseComponent
-} from "./chunk-WZW2RKS3.js";
+} from "./chunk-O4GOBNQ4.js";
 import {
   BaseStyle
-} from "./chunk-S3EDM67F.js";
+} from "./chunk-RYCQW3VD.js";
 import {
   SharedModule
-} from "./chunk-J76EK3QS.js";
-import "./chunk-VVPH32YI.js";
-import "./chunk-XU74YL5C.js";
+} from "./chunk-PGA3B33W.js";
 import {
   CommonModule
-} from "./chunk-IVBASKYQ.js";
+} from "./chunk-4OG6XTFF.js";
 import "./chunk-4NQISY7D.js";
 import {
   ChangeDetectionStrategy,
@@ -42,10 +40,13 @@ import {
   ɵɵprojectionDef,
   ɵɵproperty,
   ɵɵstyleMap
-} from "./chunk-QXMXHQOJ.js";
-import "./chunk-BNBKH67W.js";
-import "./chunk-XNHLAERP.js";
-import "./chunk-YUJPHRZ6.js";
+} from "./chunk-4WXSYY4G.js";
+import "./chunk-PU7NJTME.js";
+import "./chunk-VEIJFJE7.js";
+import "./chunk-AHSLHBJ6.js";
+import "./chunk-IPZDBIWS.js";
+import "./chunk-VVPH32YI.js";
+import "./chunk-XU74YL5C.js";
 import {
   __name,
   __publicField
