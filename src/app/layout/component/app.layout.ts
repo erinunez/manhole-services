@@ -10,16 +10,17 @@ import { LayoutService } from '../service/layout.service';
 @Component({
     selector: 'app-layout',
     standalone: true,
-    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppFooter],
+    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule],
     template: `<div class="layout-wrapper" [ngClass]="containerClass">
         <app-topbar></app-topbar>
         <app-sidebar></app-sidebar>
-        <div class="layout-main-container">
+        <router-outlet></router-outlet>
+        <!-- <div class="layout-main-container">
             <div class="layout-main">
                 <router-outlet></router-outlet>
             </div>
             <app-footer></app-footer>
-        </div>
+        </div> -->
         <div class="layout-mask animate-fadein"></div>
     </div> `
 })

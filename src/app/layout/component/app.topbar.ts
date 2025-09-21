@@ -15,8 +15,8 @@ import { LayoutService } from '../service/layout.service';
             <button class="layout-menu-button layout-topbar-action" (click)="layoutService.onMenuToggle()">
                 <i class="pi pi-bars"></i>
             </button>
-            <a class="layout-topbar-logo" routerLink="/">
-                <svg viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <a class="layout-topbar-logo" routerLink="/map-view">
+                <!-- <svg viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         fill-rule="evenodd"
                         clip-rule="evenodd"
@@ -32,8 +32,10 @@ import { LayoutService } from '../service/layout.service';
                             fill="var(--primary-color)"
                         />
                     </g>
-                </svg>
-                <span>SAKAI</span>
+                </svg> -->
+                <!-- <img src="assets/icons/tnb-logo.jpg" alt="logo"  /> -->
+                <img src="assets/icons/tnb-logo-black-transparent.png" alt="tnb" style="width: 70px;"/>
+                <!-- <span>Manhole Service</span> -->
             </a>
         </div>
 
