@@ -1,0 +1,54 @@
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+// #map {
+//   width: 100%;
+//   height: 100%;
+//   border-radius: 8px;
+// }
+
+.marker-popup {
+  position: absolute;
+  top: 30%;
+  right: 20px;
+  width: 30%;
+  z-index: 999;
+  padding: 18px;
+  border-radius: 16px;
+  height: 30%;
+    /* Glassy effect */
+  background: rgba(255, 255, 255, 0.2); /* semi-transparent white */
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  
+  /* Border & shadow */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  animation: fadeIn 0.3s ease;
+
+}
+
+.close-btn {
+  border: none;
+  background: transparent;
+  float: right;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

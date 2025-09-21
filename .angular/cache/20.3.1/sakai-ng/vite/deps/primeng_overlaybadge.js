@@ -1,16 +1,18 @@
 import {
   Badge,
   BadgeModule
-} from "./chunk-WVZHJMTZ.js";
+} from "./chunk-XYYYOFMG.js";
 import {
   BaseComponent
-} from "./chunk-O4GOBNQ4.js";
+} from "./chunk-UODYQKWI.js";
 import {
   BaseStyle
-} from "./chunk-RYCQW3VD.js";
+} from "./chunk-OCETKV6Z.js";
 import {
   SharedModule
-} from "./chunk-PGA3B33W.js";
+} from "./chunk-QI35FFB2.js";
+import "./chunk-VVPH32YI.js";
+import "./chunk-XU74YL5C.js";
 import {
   CommonModule
 } from "./chunk-4OG6XTFF.js";
@@ -41,12 +43,10 @@ import {
   ɵɵproperty,
   ɵɵstyleMap
 } from "./chunk-4WXSYY4G.js";
-import "./chunk-PU7NJTME.js";
 import "./chunk-VEIJFJE7.js";
+import "./chunk-PU7NJTME.js";
 import "./chunk-AHSLHBJ6.js";
 import "./chunk-IPZDBIWS.js";
-import "./chunk-VVPH32YI.js";
-import "./chunk-XU74YL5C.js";
 import {
   __name,
   __publicField
