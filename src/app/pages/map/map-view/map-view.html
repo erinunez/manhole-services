@@ -3,10 +3,114 @@
 
     <!-- Custom Popup on Right Side -->
     @if (selectedMarkerData) {
-    <div class="marker-popup">
+    <div class="marker-details">
         <button class="close-btn" (click)="closePopup()">✖</button>
         <h3>{{ selectedMarkerData.name }}</h3>
-        <p>{{ selectedMarkerData.info }}</p>
+        <!-- <p>{{ selectedMarkerData.info }}</p> -->
+         @if (selectedMarkerData.status === 'alarm') {
+                    <div class="flex flex-col gap-3">
+            <div class="flex flex-col gap-2 p-1">
+                <label>ID</label>
+                <span>{{ device.id }}</span>
+            </div>
+            <div class="flex flex-col gap-2 p-1">
+                <label>Address</label>
+                <span>{{ device.address }}</span>
+            </div>
+            <div class="flex flex-wrap">
+                <div class="flex flex-col gap-2 w-1/2 p-1">
+                    <label>Latitude</label>
+                    <span>{{ device.latitude }}</span>
+                </div>
+                <div class="flex flex-col gap-2 w-1/2 p-1">
+                    <label>Longitude</label>
+                    <span>{{ device.longitude }}</span>
+                </div>
+            </div>
+            <div class="flex flex-col gap-2 p-1">
+                <label>Status</label>
+                <span>{{ device.status }}</span>
+            </div>
+            <div class="flex flex-wrap">
+                <div class="flex flex-col gap-2 w-1/2 p-1">
+                    <label>Last Maintenance Timestamp</label>
+                    <span>{{ device.lastMaintenanceTimestamp }}</span>
+                </div>
+                <div class="flex flex-col gap-2 w-1/2 p-1">
+                    <label>Last Maintenance PIC</label>
+                    <span>{{ device.lastMaintenancePIC }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-3 mt-3">
+            <div class="flex flex-col gap-2 p-1">
+                <label>Device Model</label>
+                <span>{{ device.deviceModel }}</span>
+            </div>
+            <div class="flex flex-col gap-2 p-1">
+                <label>Firmware Version</label>
+                <span>{{ device.firmwareVersion }}</span>
+            </div>
+            <div class="flex flex-wrap">
+                <div class="flex flex-col gap-2 w-1/2 p-1">
+                    <label>Tilt Reading</label>
+                    <span>{{ device.tiltReading }}</span>
+                </div>
+                <div class="flex flex-col gap-2 w-1/2 p-1">
+                    <label>Default Tilt Reading</label>
+                    <span>{{ device.defaultTiltReading }}</span>
+                </div>
+            </div>
+            <div class="flex flex-wrap">
+                <div class="flex flex-col gap-2 w-1/2 p-1">
+                    <label>Battery Reading (%)</label>
+                <span>{{ device.batteryReading }}</span>
+                </div>
+                <div class="flex flex-col gap-2 w-1/2 p-1">
+                    <label>Gateway ID</label>
+                    <span>{{ device.gatewayId }}</span>
+                </div>
+            </div>
+        </div>
+         } @else {
+
+         }
+
+
+        <div class="container">
+            <!-- Section 1: Device Location Info -->
+        
+
+            <!-- Section 2: Device Technical Info -->
+            <!-- <section class="card">
+                <h2>Device Technical Info</h2>
+                <div class="form-group">
+                    <label>Device Model:</label>
+                    <input type="text" [(ngModel)]="device.deviceModel" class="form-control" name="deviceModel" />
+                </div>
+                <div class="form-group">
+                    <label>Software Version:</label>
+                    <input type="text" [(ngModel)]="device.softwareVersion" class="form-control" name="softwareVersion" />
+                </div>
+                <div class="form-group">
+                    <label>Tilt Reading:</label>
+                    <input type="number" [(ngModel)]="device.tiltReading" class="form-control" name="tiltReading" />
+                </div>
+                <div class="form-group">
+                    <label>Default Tilt Reading:</label>
+                    <input type="number" [(ngModel)]="device.defaultTiltReading" class="form-control" name="defaultTiltReading" />
+                </div>
+                <div class="form-group">
+                    <label>Battery Reading (%):</label>
+                    <input type="number" [(ngModel)]="device.batteryReading" class="form-control" name="batteryReading" />
+                </div>
+                <div class="form-group">
+                    <label>Gateway ID:</label>
+                    <input type="text" [(ngModel)]="device.gatewayId" class="form-control" name="gatewayId" />
+                </div>
+            </section> -->
+        </div>
     </div>
     }
 </div>

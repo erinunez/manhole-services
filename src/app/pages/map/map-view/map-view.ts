@@ -1,7 +1,6 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 
-
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet/dist/leaflet.css';
@@ -20,6 +19,23 @@ export class MapView implements AfterViewInit, OnInit {
     listNodes: any = [];
     // private map!: L.Map;
     selectedMarkerData: any = null;
+
+    device = {
+        id: '123',
+        address: 'ST. Sesame',
+        latitude: 0,
+        longitude: 0,
+        status: 'active',
+        lastMaintenanceTimestamp: '12/09/2025',
+        lastMaintenancePIC: 'En. Muhiddin',
+        deviceModel: 'LoraWon',
+        firmwareVersion: '11.0.02',
+        tiltReading: 0,
+        defaultTiltReading: 0,
+        batteryReading: 100,
+        gatewayId: '0923'
+    };
+
     ngAfterViewInit(): void {
         // this.initMap();
         this.initMapCluster();
@@ -117,24 +133,24 @@ export class MapView implements AfterViewInit, OnInit {
         // 3. Create a Marker Cluster Group
         const markerClusterGroup = L.markerClusterGroup();
 
-        const defaultIcon = L.icon({
-            iconUrl: 'assets/icons/manhole-white.png',
-            // shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-        });
-
         if (this.listNodes.length !== 0) {
             // 4. Loop through your dummy data and add markers
-            this.listNodes.forEach((item:any) => {
+            this.listNodes.forEach((item: any) => {
+                const defaultIcon = L.icon({
+                    iconUrl: item.status === 'normal' ? 'assets/icons/metal-normal3.png' : 'assets/icons/metal-alarm.png',
+                    // shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                    shadowSize: [41, 41]
+                });
+
                 const [lat, lng] = item.latLong.split(',').map(Number); // convert to numbers
                 const marker = L.marker([lat, lng], {
                     icon: defaultIcon,
                     draggable: true
                 });
-                marker.on('click', () => this.showMarkerData({ name: item.name, info: 'Some details here' }));
+                marker.on('click', () => this.showMarkerData({ name: item.name, info: 'Some details here', status: item.status}));
                 // marker.bindPopup(`<b>${item.name}</b><br>${lat}, ${lng}`);
                 markerClusterGroup.addLayer(marker); // add to cluster group
             });
@@ -145,25 +161,25 @@ export class MapView implements AfterViewInit, OnInit {
     }
 
     showMarkerData(data: any) {
-    this.selectedMarkerData = data;
-  }
+        this.selectedMarkerData = data;
+    }
 
-  closePopup() {
-    this.selectedMarkerData = null;
-  }
+    closePopup() {
+        this.selectedMarkerData = null;
+    }
 
     ngOnInit(): void {
         const putrajayaManholeData = [
-            { latLong: '2.9302, 101.6753', name: 'Near Precinct 1' },
-            { latLong: '2.9294, 101.6812', name: 'Near Putra Mosque' },
-            { latLong: '2.9271, 101.6863', name: 'Near Ministry of Finance' },
-            { latLong: '2.9224, 101.6885', name: 'Precinct 2' },
-            { latLong: '2.9187, 101.6932', name: 'Precinct 3' },
-            { latLong: '2.9152, 101.6990', name: 'Near Taman Wawasan' },
-            { latLong: '2.9113, 101.7038', name: 'Precinct 4' },
-            { latLong: '2.9054, 101.7076', name: 'Precinct 5' },
-            { latLong: '2.8999, 101.7123', name: 'Near PICC' },
-            { latLong: '2.8962, 101.7158', name: 'Precinct 6' }
+            { latLong: '2.9302, 101.6753', name: 'Near Precinct 1', status: 'normal' },
+            { latLong: '2.9294, 101.6812', name: 'Near Putra Mosque', status: 'normal' },
+            { latLong: '2.9271, 101.6863', name: 'Near Ministry of Finance', status: 'alarm' },
+            { latLong: '2.9224, 101.6885', name: 'Precinct 2', status: 'normal' },
+            { latLong: '2.9187, 101.6932', name: 'Precinct 3', status: 'normal' },
+            { latLong: '2.9152, 101.6990', name: 'Near Taman Wawasan', status: 'normal' },
+            { latLong: '2.9113, 101.7038', name: 'Precinct 4', status: 'normal' },
+            { latLong: '2.9054, 101.7076', name: 'Precinct 5', status: 'alarm' },
+            { latLong: '2.8999, 101.7123', name: 'Near PICC', status: 'normal' },
+            { latLong: '2.8962, 101.7158', name: 'Precinct 6', status: 'alarm' }
         ];
 
         this.listNodes = putrajayaManholeData;
