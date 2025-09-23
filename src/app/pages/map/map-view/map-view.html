@@ -7,8 +7,7 @@
         <button class="close-btn" (click)="closePopup()">✖</button>
         <h3>{{ selectedMarkerData.name }}</h3>
         <!-- <p>{{ selectedMarkerData.info }}</p> -->
-         @if (selectedMarkerData.status === 'alarm') {
-                    <div class="flex flex-col gap-3">
+        <div classcl="flex flex-col gap-3">
             <div class="flex flex-col gap-2 p-1">
                 <label>ID</label>
                 <span>{{ device.id }}</span>
@@ -65,7 +64,7 @@
             <div class="flex flex-wrap">
                 <div class="flex flex-col gap-2 w-1/2 p-1">
                     <label>Battery Reading (%)</label>
-                <span>{{ device.batteryReading }}</span>
+                    <span>{{ device.batteryReading }}</span>
                 </div>
                 <div class="flex flex-col gap-2 w-1/2 p-1">
                     <label>Gateway ID</label>
@@ -73,14 +72,9 @@
                 </div>
             </div>
         </div>
-         } @else {
-
-         }
-
 
         <div class="container">
             <!-- Section 1: Device Location Info -->
-        
 
             <!-- Section 2: Device Technical Info -->
             <!-- <section class="card">

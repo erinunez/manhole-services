@@ -111,6 +111,10 @@ export class MapView implements AfterViewInit, OnInit {
         //     { latLong: '2.9764, 101.6964', name: 'Manhole 7' }
         // ];
 
+        // if (L.DomUtil.get('map') !== null) {
+        //     L.DomUtil.get('map')._leaflet_id = null;
+        // }
+
         // 1. Create the map
         const map = L.map('map', {
             zoomControl: false // 🚫 disables default zoom control
