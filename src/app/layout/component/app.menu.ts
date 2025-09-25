@@ -21,8 +21,20 @@ export class AppMenu {
     ngOnInit() {
         this.model = [
             {
-                label: 'Home',
-                items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
+                label: 'Devices',
+                items: [{ label: 'Manholes', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
+            },
+            {
+                label: 'Operation',
+                items: [{ label: 'Activities', icon: 'pi pi-fw pi-list-check', routerLink: ['/notfound'] },
+                { label: 'Maintenances Schedule', icon: 'pi pi-fw pi-calendar', routerLink: ['/notfound'] },
+                { label: 'Report', icon: 'pi pi-fw pi-file', routerLink: ['/notfound'] }]
+            },
+            {
+                label: 'Management',
+                items: [{ label: 'User', icon: 'pi pi-fw pi-user', routerLink: ['/notfound'] },
+                { label: 'Role & Permission', icon: 'pi pi-fw pi-users', routerLink: ['/notfound'] },
+                { label: 'Logs', icon: 'pi pi-fw pi-file-excel', routerLink: ['/notfound'] }]
             }
             // {
             //     label: 'Home',
