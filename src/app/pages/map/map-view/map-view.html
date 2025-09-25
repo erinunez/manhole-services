@@ -1,5 +1,45 @@
 <div style="width: 100vw; height: 100vh; position: relative">
     <div id="map" style="height: 100%"></div>
+    
+    <!-- Alarm Bell Icon with Description -->
+    <div class="alarm-indicator" (click)="toggleAlarmDetails()">
+        <div class="alarm-bell">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 19V20H3V19L5 17V11C5 7.9 7.03 5.17 10 4.29C10.38 4.92 11 5.26 11.7 5.26H12.3C13 5.26 13.62 4.92 14 4.29C16.97 5.17 19 7.9 19 11V17L21 19ZM12 22C13.1 22 14 21.1 14 20H10C10 21.1 10.9 22 12 22Z" fill="#ff4444"/>
+            </svg>
+        </div>
+        <div class="alarm-description">
+            <span class="alarm-count">{{ getAlarmCount() }}</span>
+            <span class="alarm-text">Alarm(s) Detected</span>
+        </div>
+    </div>
+
+    <!-- Alarm Details Panel -->
+    @if (showAlarmDetails) {
+    <div class="alarm-details-panel">
+        <div class="alarm-panel-header">
+            <h3>🚨 Alarm Details</h3>
+            <button class="close-alarm-btn" (click)="closeAlarmDetails()">✖</button>
+        </div>
+        <div class="alarm-list">
+            @for (alarm of getAlarmManholes(); track alarm.name) {
+            <div class="alarm-item">
+                <div class="alarm-info">
+                    <div class="alarm-name">{{ alarm.name }}</div>
+                    <div class="alarm-location">{{ alarm.latLong }}</div>
+                    <div class="alarm-status">Status: <span class="status-alarm">ALARM</span></div>
+                </div>
+                <button class="fly-to-btn" (click)="flyToLocation(alarm.latLong)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" fill="currentColor"/>
+                    </svg>
+                    Fly To
+                </button>
+            </div>
+            }
+        </div>
+    </div>
+    }
 
     <!-- Custom Popup on Right Side -->
     @if (selectedMarkerData) {
