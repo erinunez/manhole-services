@@ -41,110 +41,127 @@
     </div>
     }
 
-    <!-- Custom Popup on Right Side -->
+    <!-- Enhanced Marker Details Popup -->
     @if (selectedMarkerData) {
     <div class="marker-details">
-        <button class="close-btn" (click)="closePopup()">✖</button>
-        <h3>{{ selectedMarkerData.name }}</h3>
-        <!-- <p>{{ selectedMarkerData.info }}</p> -->
-        <div classcl="flex flex-col gap-3">
-            <div class="flex flex-col gap-2 p-1">
-                <label>ID</label>
-                <span>{{ device.id }}</span>
-            </div>
-            <div class="flex flex-col gap-2 p-1">
-                <label>Address</label>
-                <span>{{ device.address }}</span>
-            </div>
-            <div class="flex flex-wrap">
-                <div class="flex flex-col gap-2 w-1/2 p-1">
-                    <label>Latitude</label>
-                    <span>{{ device.latitude }}</span>
+        <!-- Header Section -->
+        <div class="marker-header">
+            <div class="marker-title-section">
+                <div class="marker-icon">
+                    @if (selectedMarkerData.status === 'alarm') {
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 19V20H3V19L5 17V11C5 7.9 7.03 5.17 10 4.29C10.38 4.92 11 5.26 11.7 5.26H12.3C13 5.26 13.62 4.92 14 4.29C16.97 5.17 19 7.9 19 11V17L21 19ZM12 22C13.1 22 14 21.1 14 20H10C10 21.1 10.9 22 12 22Z" fill="#ff4444"/>
+                        </svg>
+                    } @else {
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 19V20H3V19L5 17V11C5 7.9 7.03 5.17 10 4.29C10.38 4.92 11 5.26 11.7 5.26H12.3C13 5.26 13.62 4.92 14 4.29C16.97 5.17 19 7.9 19 11V17L21 19ZM12 22C13.1 22 14 21.1 14 20H10C10 21.1 10.9 22 12 22Z" fill="#00ff88"/>
+                        </svg>
+                    }
                 </div>
-                <div class="flex flex-col gap-2 w-1/2 p-1">
-                    <label>Longitude</label>
-                    <span>{{ device.longitude }}</span>
+                <div class="marker-title">
+                    <h3>{{ selectedMarkerData.name }}</h3>
+                    <div class="marker-status" [class.alarm-status]="selectedMarkerData.status === 'alarm'" [class.normal-status]="selectedMarkerData.status === 'normal'">
+                        {{ selectedMarkerData.status | uppercase }}
+                    </div>
                 </div>
             </div>
-            <div class="flex flex-col gap-2 p-1">
-                <label>Status</label>
-                <span>{{ device.status }}</span>
-            </div>
-            <div class="flex flex-wrap">
-                <div class="flex flex-col gap-2 w-1/2 p-1">
-                    <label>Last Maintenance Timestamp</label>
-                    <span>{{ device.lastMaintenanceTimestamp }}</span>
+            <button class="close-btn" (click)="closePopup()">✖</button>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="marker-content">
+            <!-- Basic Information Section -->
+            <div class="info-section">
+                <div class="section-header">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor"/>
+                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Basic Information</span>
                 </div>
-                <div class="flex flex-col gap-2 w-1/2 p-1">
-                    <label>Last Maintenance PIC</label>
-                    <span>{{ device.lastMaintenancePIC }}</span>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Device ID</label>
+                        <span class="info-value">{{ device.id }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Address</label>
+                        <span class="info-value">{{ device.address }}</span>
+                    </div>
+                    <div class="info-item full-width">
+                        <label>Coordinates</label>
+                        <span class="info-value coordinates">{{ selectedMarkerData.info || '2.9264, 101.6964' }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Device Status Section -->
+            <div class="info-section">
+                <div class="section-header">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="3" fill="currentColor"/>
+                        <path d="M12 1V3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M12 21V23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M4.22 4.22L5.64 5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M18.36 18.36L19.78 19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M1 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M21 12H23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M4.22 19.78L5.64 18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M18.36 5.64L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Device Status</span>
+                </div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Battery Level</label>
+                        <span class="info-value battery-level">{{ device.batteryReading }}%</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Tilt Reading</label>
+                        <span class="info-value">{{ device.tiltReading }}°</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Default Tilt</label>
+                        <span class="info-value">{{ device.defaultTiltReading }}°</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Gateway ID</label>
+                        <span class="info-value gateway-id">{{ device.gatewayId }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Maintenance Information Section -->
+            <div class="info-section">
+                <div class="section-header">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.7 6.3C14.7 6.3 14.7 6.3 14.7 6.3C14.7 6.3 14.7 6.3 14.7 6.3C14.7 6.3 14.7 6.3 14.7 6.3C14.7 6.3 14.7 6.3 14.7 6.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M17.5 10.5L9.5 18.5L6 15L14 7L17.5 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Maintenance</span>
+                </div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Last Maintenance</label>
+                        <span class="info-value">{{ device.lastMaintenanceTimestamp }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Maintenance PIC</label>
+                        <span class="info-value">{{ device.lastMaintenancePIC }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Device Model</label>
+                        <span class="info-value">{{ device.deviceModel }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Firmware Version</label>
+                        <span class="info-value">{{ device.firmwareVersion }}</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="flex flex-col gap-3 mt-3">
-            <div class="flex flex-col gap-2 p-1">
-                <label>Device Model</label>
-                <span>{{ device.deviceModel }}</span>
-            </div>
-            <div class="flex flex-col gap-2 p-1">
-                <label>Firmware Version</label>
-                <span>{{ device.firmwareVersion }}</span>
-            </div>
-            <div class="flex flex-wrap">
-                <div class="flex flex-col gap-2 w-1/2 p-1">
-                    <label>Tilt Reading</label>
-                    <span>{{ device.tiltReading }}</span>
-                </div>
-                <div class="flex flex-col gap-2 w-1/2 p-1">
-                    <label>Default Tilt Reading</label>
-                    <span>{{ device.defaultTiltReading }}</span>
-                </div>
-            </div>
-            <div class="flex flex-wrap">
-                <div class="flex flex-col gap-2 w-1/2 p-1">
-                    <label>Battery Reading (%)</label>
-                    <span>{{ device.batteryReading }}</span>
-                </div>
-                <div class="flex flex-col gap-2 w-1/2 p-1">
-                    <label>Gateway ID</label>
-                    <span>{{ device.gatewayId }}</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <!-- Section 1: Device Location Info -->
-
-            <!-- Section 2: Device Technical Info -->
-            <!-- <section class="card">
-                <h2>Device Technical Info</h2>
-                <div class="form-group">
-                    <label>Device Model:</label>
-                    <input type="text" [(ngModel)]="device.deviceModel" class="form-control" name="deviceModel" />
-                </div>
-                <div class="form-group">
-                    <label>Software Version:</label>
-                    <input type="text" [(ngModel)]="device.softwareVersion" class="form-control" name="softwareVersion" />
-                </div>
-                <div class="form-group">
-                    <label>Tilt Reading:</label>
-                    <input type="number" [(ngModel)]="device.tiltReading" class="form-control" name="tiltReading" />
-                </div>
-                <div class="form-group">
-                    <label>Default Tilt Reading:</label>
-                    <input type="number" [(ngModel)]="device.defaultTiltReading" class="form-control" name="defaultTiltReading" />
-                </div>
-                <div class="form-group">
-                    <label>Battery Reading (%):</label>
-                    <input type="number" [(ngModel)]="device.batteryReading" class="form-control" name="batteryReading" />
-                </div>
-                <div class="form-group">
-                    <label>Gateway ID:</label>
-                    <input type="text" [(ngModel)]="device.gatewayId" class="form-control" name="gatewayId" />
-                </div>
-            </section> -->
-        </div>
     </div>
     }
 </div>
