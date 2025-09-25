@@ -86,12 +86,12 @@
                         <span class="info-value">{{ device.id }}</span>
                     </div>
                     <div class="info-item">
-                        <label>Address</label>
-                        <span class="info-value">{{ device.address }}</span>
+                        <label>Coordinates</label>
+                        <span class="info-value coordinates">{{ selectedMarkerData.address || '2.9264, 101.6964' }}</span>
                     </div>
                     <div class="info-item full-width">
-                        <label>Coordinates</label>
-                        <span class="info-value coordinates">{{ selectedMarkerData.info || '2.9264, 101.6964' }}</span>
+                        <label>Address</label>
+                        <span class="info-value">{{ device.address  }}</span>
                     </div>
                 </div>
             </div>

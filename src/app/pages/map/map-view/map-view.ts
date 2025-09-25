@@ -135,8 +135,26 @@ export class MapView implements AfterViewInit, OnInit {
             })
             .addTo(this.map);
 
-        // 3. Create a Marker Cluster Group
-        const markerClusterGroup = L.markerClusterGroup();
+        // 3. Create a Marker Cluster Group with custom colors
+        const markerClusterGroup = L.markerClusterGroup({
+            iconCreateFunction: function(cluster) {
+                const childCount = cluster.getChildCount();
+                let className = 'marker-cluster-';
+                if (childCount < 10) {
+                    className += 'small';
+                } else if (childCount < 100) {
+                    className += 'medium';
+                } else {
+                    className += 'large';
+                }
+                
+                return L.divIcon({
+                    html: '<div><span>' + childCount + '</span></div>',
+                    className: 'marker-cluster ' + className,
+                    iconSize: L.point(40, 40)
+                });
+            }
+        });
 
         if (this.listNodes.length !== 0) {
             // 4. Loop through your dummy data and add markers
