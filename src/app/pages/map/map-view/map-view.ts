@@ -38,14 +38,6 @@ export class MapView implements AfterViewInit, OnInit {
     };
 
     ngAfterViewInit(): void {
-        // Configure Leaflet icon paths
-        delete (L.Icon.Default.prototype as any)._getIconUrl;
-        L.Icon.Default.mergeOptions({
-            iconRetinaUrl: 'assets/images/leaflet/marker-icon-2x.png',
-            iconUrl: 'assets/images/leaflet/marker-icon.png',
-            shadowUrl: 'assets/images/leaflet/marker-shadow.png',
-        });
-        
         // this.initMap();
         this.initMapCluster();
     }
@@ -123,12 +115,6 @@ export class MapView implements AfterViewInit, OnInit {
         // if (L.DomUtil.get('map') !== null) {
         //     L.DomUtil.get('map')._leaflet_id = null;
         // }
-
-        L.Icon.Default.mergeOptions({
-            iconRetinaUrl: 'assets/leaflet/marker-icon-2x.png',
-            iconUrl: 'assets/leaflet/marker-icon.png',
-            shadowUrl: 'assets/leaflet/marker-shadow.png',
-          });
           
         // 1. Create the map
         this.map = L.map('map', {
