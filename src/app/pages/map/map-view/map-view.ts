@@ -122,7 +122,7 @@ export class MapView implements AfterViewInit, OnInit {
         }).setView([2.9264, 101.6964], 13);
 
         // 2. Add a tile layer (dark theme)
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 18,
             attribution: '© OpenStreetMap contributors © CARTO',
             subdomains: 'abcd',
