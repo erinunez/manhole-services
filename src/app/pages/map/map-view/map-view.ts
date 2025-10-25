@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import * as L from 'leaflet';
 (window as any).L = L;
 // import 'leaflet.markercluster';
-import { loadLeafletMarkerCluster } from '../../../../leaflet-markercluster-loader'
+import { loadLeafletMarkerCluster } from '../../../../leaflet-markercluster-loader';
 // import { loadLeafletMarkerCluster } from './leaflet-markercluster-loader';
 
 @Component({
@@ -129,27 +129,17 @@ export class MapView implements AfterViewInit, OnInit {
 
     async initClusterMap() {
         await loadLeafletMarkerCluster();
-        console.log('Leaflet:', L);
-        console.log('Has markerClusterGroup:', typeof (L as any).markerClusterGroup);
 
         const map = L.map('map', {
             zoomControl: false // 🚫 disables default zoom control
         }).setView([2.9264, 101.6964], 13);
 
-        this.map = map
+        this.map = map;
 
         // Tile layer (OpenStreetMap)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(this.map);
-
-        // Define custom icon
-        const customIcon = L.icon({
-            iconUrl: 'assets/icons/water.png', // your image path
-            iconSize: [32, 32], // size of the icon
-            iconAnchor: [16, 32], // point of the icon which will correspond to marker's location
-            popupAnchor: [0, -32] // point from which popup should open relative to the iconAnchor
-        });
 
         L.control
             .zoom({
@@ -163,6 +153,14 @@ export class MapView implements AfterViewInit, OnInit {
         const markers = L.markerClusterGroup();
 
         for (let i = 0; i < this.listNodes.length; i++) {
+            // Define custom icon
+            const customIcon = L.icon({
+                iconUrl: this.listNodes[i].status === 'alarm' ? 'assets/icons/metal-alarm.png' : 'assets/icons/metal-normal3.png', // your image path
+                iconSize: [32, 32], // size of the icon
+                iconAnchor: [16, 32], // point of the icon which will correspond to marker's location
+                popupAnchor: [0, -32] // point from which popup should open relative to the iconAnchor
+            });
+
             const [lat, lng] = this.listNodes[i].latLong.split(',').map(Number);
             //   const lat = 2.9264 + (Math.random() - 0.5) * 0.1;
             //   const lng = 101.6964 + (Math.random() - 0.5) * 0.1;
