@@ -1,13 +1,13 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 
-import * as L from 'leaflet';
-import 'leaflet.markercluster';
-import 'leaflet/dist/leaflet.css';
-import 'leaflet.markercluster/dist/MarkerCluster.css';
-import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
+import * as L from 'leaflet';
+import 'leaflet.markercluster';
+// import '../../../../leaflet-marker-fix';
+// import './app/leaflet-marker-fix';
 
 @Component({
     selector: 'app-map-view',
@@ -38,16 +38,7 @@ export class MapView implements AfterViewInit, OnInit {
     };
 
     ngAfterViewInit(): void {
-        // Configure Leaflet icon paths
-        delete (L.Icon.Default.prototype as any)._getIconUrl;
-        L.Icon.Default.mergeOptions({
-            iconRetinaUrl: 'assets/images/leaflet/marker-icon-2x.png',
-            iconUrl: 'assets/images/leaflet/marker-icon.png',
-            shadowUrl: 'assets/images/leaflet/marker-shadow.png',
-        });
-        
         // this.initMap();
-        this.initMapCluster();
     }
 
     initMap() {
@@ -108,93 +99,59 @@ export class MapView implements AfterViewInit, OnInit {
         }
     }
 
-    initMapCluster() {
-        // // Dummy manhole data
-        // const dummyData = [
-        //     { latLong: '2.9264, 101.6964', name: 'Manhole 1' },
-        //     { latLong: '2.9220, 101.6964', name: 'Manhole 2' },
-        //     { latLong: '2.9214, 101.6964', name: 'Manhole 3' },
-        //     { latLong: '2.9000, 101.6964', name: 'Manhole 4' },
-        //     { latLong: '2.9400, 101.6964', name: 'Manhole 5' },
-        //     { latLong: '2.9364, 101.6964', name: 'Manhole 6' },
-        //     { latLong: '2.9764, 101.6964', name: 'Manhole 7' }
-        // ];
+    initClusterMap() {
+        this.map = L.map('map').setView([2.9264, 101.6964], 13); // example coords
 
-        // if (L.DomUtil.get('map') !== null) {
-        //     L.DomUtil.get('map')._leaflet_id = null;
-        // }
-
-        L.Icon.Default.mergeOptions({
-            iconRetinaUrl: 'assets/leaflet/marker-icon-2x.png',
-            iconUrl: 'assets/leaflet/marker-icon.png',
-            shadowUrl: 'assets/leaflet/marker-shadow.png',
-          });
-          
-        // 1. Create the map
-        this.map = L.map('map', {
-            zoomControl: false // 🚫 disables default zoom control
-        }).setView([2.9264, 101.6964], 13);
-
-        // 2. Add a tile layer (dark theme)
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            maxZoom: 18,
-            attribution: '© OpenStreetMap contributors © CARTO',
-            subdomains: 'abcd',
-            noWrap: true
+        // Tile layer (OpenStreetMap)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
         }).addTo(this.map);
 
-        L.control
-            .zoom({
-                position: 'bottomright' // ✅ now only one control
-            })
-            .addTo(this.map);
-
-        // 3. Create a Marker Cluster Group with custom colors
-        const markerClusterGroup = L.markerClusterGroup({
-            iconCreateFunction: function(cluster) {
-                const childCount = cluster.getChildCount();
-                let className = 'marker-cluster-';
-                if (childCount < 10) {
-                    className += 'small';
-                } else if (childCount < 100) {
-                    className += 'medium';
-                } else {
-                    className += 'large';
-                }
-                
-                return L.divIcon({
-                    html: '<div><span>' + childCount + '</span></div>',
-                    className: 'marker-cluster ' + className,
-                    iconSize: L.point(40, 40)
-                });
-            }
+        // Define custom icon
+        const customIcon = L.icon({
+            iconUrl: 'assets/icons/water.png', // your image path
+            iconSize: [32, 32], // size of the icon
+            iconAnchor: [16, 32], // point of the icon which will correspond to marker's location
+            popupAnchor: [0, -32] // point from which popup should open relative to the iconAnchor
         });
 
-        if (this.listNodes.length !== 0) {
-            // 4. Loop through your dummy data and add markers
-            this.listNodes.forEach((item: any) => {
-                const defaultIcon = L.icon({
-                    iconUrl: item.status === 'normal' ? 'assets/icons/metal-normal3.png' : 'assets/icons/metal-alarm.png',
-                    // shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-                    iconSize: [25, 41],
-                    iconAnchor: [12, 41],
-                    popupAnchor: [1, -34],
-                    shadowSize: [41, 41]
-                });
+        // MarkerCluster
+        const markers = L.markerClusterGroup();
 
-                const [lat, lng] = item.latLong.split(',').map(Number); // convert to numbers
-                const marker = L.marker([lat, lng], {
-                    icon: defaultIcon,
-                    draggable: true
-                });
-                marker.on('click', () => this.showMarkerData({ name: item.name, info: 'Some details here', status: item.status}));
-                // marker.bindPopup(`<b>${item.name}</b><br>${lat}, ${lng}`);
-                markerClusterGroup.addLayer(marker); // add to cluster group
+        for (let i = 0; i < this.listNodes.length; i++) {
+            const [lat, lng] = this.listNodes[i].latLong.split(',').map(Number);
+            //   const lat = 2.9264 + (Math.random() - 0.5) * 0.1;
+            //   const lng = 101.6964 + (Math.random() - 0.5) * 0.1;
+            //   const marker = L.marker([lat, lng]);
+            // Apply custom icon here
+            const marker = L.marker([lat, lng], { icon: customIcon });
+
+            // Optional: add popup or tooltip
+            // marker.bindPopup(`Marker ${this.listNodes[i].name}`);
+
+            // Handle click event
+            marker.on('click', (e) => {
+                const latlngArray = `${e.latlng.lat.toFixed(4)}, ${e.latlng.lng.toFixed(4)}`;
+
+                // Find the corresponding manhole data
+                const manholeData = this.listNodes.find((node: any) => node.latLong === latlngArray);
+
+                // Show the marker data popup after animation completes
+                setTimeout(() => {
+                    if (manholeData) {
+                        this.showMarkerData({
+                            name: manholeData.name,
+                            cords: latlngArray,
+                            status: manholeData.status
+                        });
+                    }
+                }, 200); // Slightly longer than animation duration
             });
+
+            markers.addLayer(marker);
         }
 
-        // 5. Add the cluster group to the map
-        this.map.addLayer(markerClusterGroup);
+        this.map.addLayer(markers);
     }
 
     showMarkerData(data: any) {
@@ -223,27 +180,27 @@ export class MapView implements AfterViewInit, OnInit {
 
     flyToLocation(latLong: string): void {
         const [lat, lng] = latLong.split(',').map(Number);
-        
+
         // Find the corresponding manhole data
         const manholeData = this.listNodes.find((node: any) => node.latLong === latLong);
-        
+
         // Fly to the location
         this.map.setView([lat, lng], 16, {
             animate: true,
             duration: 1.5
         });
-        
+
         // Show the marker data popup after animation completes
         setTimeout(() => {
             if (manholeData) {
-                this.showMarkerData({ 
-                    name: manholeData.name, 
-                    info: `Location: ${latLong}`, 
-                    status: manholeData.status 
+                this.showMarkerData({
+                    name: manholeData.name,
+                    info: `Location: ${latLong}`,
+                    status: manholeData.status
                 });
             }
         }, 200); // Slightly longer than animation duration
-        
+
         this.closeAlarmDetails();
     }
 
@@ -273,6 +230,6 @@ export class MapView implements AfterViewInit, OnInit {
 
         this.listNodes = putrajayaManholeData;
         // this.initMap();
-        this.initMapCluster();
+        this.initClusterMap();
     }
 }
