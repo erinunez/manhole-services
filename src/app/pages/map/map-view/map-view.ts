@@ -132,7 +132,11 @@ export class MapView implements AfterViewInit, OnInit {
         console.log('Leaflet:', L);
         console.log('Has markerClusterGroup:', typeof (L as any).markerClusterGroup);
 
-        this.map = L.map('map').setView([2.9264, 101.6964], 13); // example coords
+        const map = L.map('map', {
+            zoomControl: false // 🚫 disables default zoom control
+        }).setView([2.9264, 101.6964], 13);
+
+        this.map = map
 
         // Tile layer (OpenStreetMap)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -146,6 +150,12 @@ export class MapView implements AfterViewInit, OnInit {
             iconAnchor: [16, 32], // point of the icon which will correspond to marker's location
             popupAnchor: [0, -32] // point from which popup should open relative to the iconAnchor
         });
+
+        L.control
+            .zoom({
+                position: 'bottomright' // ✅ now only one control
+            })
+            .addTo(map);
 
         // MarkerCluster
         // const markers = (L as any).markerClusterGroup();
