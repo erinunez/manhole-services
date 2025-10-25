@@ -1,5 +1,6 @@
 import {
   Checkbox
+<<<<<<< HEAD
 } from "./chunk-6HVLWGNF.js";
 import {
   Paginator,
@@ -32,6 +33,40 @@ import "./chunk-CMVOE67Z.js";
 import {
   Ripple
 } from "./chunk-L3EYRAX6.js";
+=======
+} from "./chunk-GW25FS7I.js";
+import {
+  Paginator,
+  PaginatorModule
+} from "./chunk-VBCUF4KZ.js";
+import "./chunk-KZK5CW7I.js";
+import "./chunk-BKP3MQZN.js";
+import "./chunk-VVQNKLMA.js";
+import "./chunk-QCUWQ22O.js";
+import "./chunk-IG47NGPG.js";
+import {
+  Scroller
+} from "./chunk-TSHJ6DOH.js";
+import "./chunk-SMUCVK7Y.js";
+import "./chunk-MLOHWK3A.js";
+import "./chunk-ASJAUZYV.js";
+import "./chunk-MD53GBT5.js";
+import "./chunk-BHI5UKXW.js";
+import "./chunk-VDLUJ72X.js";
+import "./chunk-6PBBDZZF.js";
+import "./chunk-JM5HLFCK.js";
+import {
+  Badge,
+  BadgeModule
+} from "./chunk-5HR4PVRK.js";
+import {
+  DomHandler
+} from "./chunk-C64HYNUW.js";
+import "./chunk-O6ANYRXN.js";
+import {
+  Ripple
+} from "./chunk-JDLRSBE6.js";
+>>>>>>> 3e015cf10dd5807aebb34e00948a0920ff3e4e9d
 import {
   ArrowDownIcon,
   ArrowUpIcon,
@@ -41,6 +76,7 @@ import {
   SortAmountDownIcon,
   SortAmountUpAltIcon,
   SpinnerIcon
+<<<<<<< HEAD
 } from "./chunk-OY5R4GDP.js";
 import {
   CheckIcon
@@ -52,11 +88,28 @@ import {
   BaseStyle
 } from "./chunk-4IW4A7GK.js";
 import "./chunk-DDZM7I5D.js";
+=======
+} from "./chunk-BST4OIU3.js";
+import {
+  CheckIcon
+} from "./chunk-KU35FP2M.js";
+import {
+  BaseComponent
+} from "./chunk-PMELNQH5.js";
+import {
+  BaseStyle
+} from "./chunk-OUSGGVZB.js";
+import "./chunk-Q7GDTJC3.js";
+>>>>>>> 3e015cf10dd5807aebb34e00948a0920ff3e4e9d
 import {
   FilterService,
   PrimeTemplate,
   SharedModule
+<<<<<<< HEAD
 } from "./chunk-GMVSR56W.js";
+=======
+} from "./chunk-MU2Z22IG.js";
+>>>>>>> 3e015cf10dd5807aebb34e00948a0920ff3e4e9d
 import {
   G2 as G,
   Ht,
@@ -78,14 +131,24 @@ import {
   pt,
   s,
   z2 as z
+<<<<<<< HEAD
 } from "./chunk-LEDTVQ4Z.js";
 import "./chunk-CXMZ2ECX.js";
 import "./chunk-BMT5F2AN.js";
+=======
+} from "./chunk-TMXM24YL.js";
+import "./chunk-SAU3USHU.js";
+import "./chunk-AVRSS5NX.js";
+>>>>>>> 3e015cf10dd5807aebb34e00948a0920ff3e4e9d
 import {
   FormsModule,
   NgControlStatus,
   NgModel
+<<<<<<< HEAD
 } from "./chunk-RPA26E4Q.js";
+=======
+} from "./chunk-GWX5XMVN.js";
+>>>>>>> 3e015cf10dd5807aebb34e00948a0920ff3e4e9d
 import {
   CommonModule,
   NgClass,
@@ -94,8 +157,8 @@ import {
   NgStyle,
   NgTemplateOutlet,
   isPlatformBrowser
-} from "./chunk-DK26V7JK.js";
-import "./chunk-ZJ25XCV3.js";
+} from "./chunk-GBQ2DTYR.js";
+import "./chunk-CEKRWJQT.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -161,12 +224,18 @@ import {
   ɵɵtemplate,
   ɵɵtemplateRefExtractor,
   ɵɵviewQuery
+<<<<<<< HEAD
 } from "./chunk-6PKVENZL.js";
 import "./chunk-JRFR6BLO.js";
 import "./chunk-HWYXSU2G.js";
+=======
+} from "./chunk-C73YR6D2.js";
+import "./chunk-53B2AV33.js";
+import "./chunk-D5HPMNDN.js";
+>>>>>>> 3e015cf10dd5807aebb34e00948a0920ff3e4e9d
 import {
   Subject
-} from "./chunk-MARUHEWW.js";
+} from "./chunk-W3LQWAEF.js";
 import {
   __spreadProps,
   __spreadValues

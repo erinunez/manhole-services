@@ -1,6 +1,7 @@
 import {
   Paginator,
   PaginatorModule
+<<<<<<< HEAD
 } from "./chunk-FOCQ32KB.js";
 import "./chunk-XBC4DFXD.js";
 import "./chunk-RIIDOOSP.js";
@@ -30,12 +31,44 @@ import {
   BaseStyle
 } from "./chunk-4IW4A7GK.js";
 import "./chunk-DDZM7I5D.js";
+=======
+} from "./chunk-VBCUF4KZ.js";
+import "./chunk-KZK5CW7I.js";
+import "./chunk-BKP3MQZN.js";
+import "./chunk-VVQNKLMA.js";
+import "./chunk-QCUWQ22O.js";
+import "./chunk-IG47NGPG.js";
+import "./chunk-TSHJ6DOH.js";
+import "./chunk-SMUCVK7Y.js";
+import "./chunk-MLOHWK3A.js";
+import "./chunk-ASJAUZYV.js";
+import "./chunk-MD53GBT5.js";
+import "./chunk-BHI5UKXW.js";
+import "./chunk-VDLUJ72X.js";
+import "./chunk-6PBBDZZF.js";
+import "./chunk-JM5HLFCK.js";
+import "./chunk-C64HYNUW.js";
+import "./chunk-O6ANYRXN.js";
+import "./chunk-JDLRSBE6.js";
+import {
+  SpinnerIcon
+} from "./chunk-BST4OIU3.js";
+import "./chunk-KU35FP2M.js";
+import {
+  BaseComponent
+} from "./chunk-PMELNQH5.js";
+import {
+  BaseStyle
+} from "./chunk-OUSGGVZB.js";
+import "./chunk-Q7GDTJC3.js";
+>>>>>>> 3e015cf10dd5807aebb34e00948a0920ff3e4e9d
 import {
   FilterService,
   Footer,
   Header,
   SharedModule,
   TranslationKeys
+<<<<<<< HEAD
 } from "./chunk-GMVSR56W.js";
 import {
   c
@@ -43,13 +76,22 @@ import {
 import "./chunk-CXMZ2ECX.js";
 import "./chunk-BMT5F2AN.js";
 import "./chunk-RPA26E4Q.js";
+=======
+} from "./chunk-MU2Z22IG.js";
+import {
+  c
+} from "./chunk-TMXM24YL.js";
+import "./chunk-SAU3USHU.js";
+import "./chunk-AVRSS5NX.js";
+import "./chunk-GWX5XMVN.js";
+>>>>>>> 3e015cf10dd5807aebb34e00948a0920ff3e4e9d
 import {
   CommonModule,
   NgIf,
   NgTemplateOutlet,
   SlicePipe
-} from "./chunk-DK26V7JK.js";
-import "./chunk-ZJ25XCV3.js";
+} from "./chunk-GBQ2DTYR.js";
+import "./chunk-CEKRWJQT.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -101,10 +143,17 @@ import {
   ɵɵtemplate,
   ɵɵtext,
   ɵɵtextInterpolate1
+<<<<<<< HEAD
 } from "./chunk-6PKVENZL.js";
 import "./chunk-JRFR6BLO.js";
 import "./chunk-HWYXSU2G.js";
 import "./chunk-MARUHEWW.js";
+=======
+} from "./chunk-C73YR6D2.js";
+import "./chunk-53B2AV33.js";
+import "./chunk-D5HPMNDN.js";
+import "./chunk-W3LQWAEF.js";
+>>>>>>> 3e015cf10dd5807aebb34e00948a0920ff3e4e9d
 import "./chunk-3OV72XIM.js";
 
 // node_modules/@primeuix/styles/dist/dataview/index.mjs
