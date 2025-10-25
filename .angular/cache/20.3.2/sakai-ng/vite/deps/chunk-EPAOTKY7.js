@@ -1,32 +1,24 @@
 import {
   withHttpTransferCache
-<<<<<<<< HEAD:.angular/cache/20.3.2/sakai-ng/vite/deps/chunk-EPAOTKY7.js
 } from "./chunk-P5HYEGOH.js";
-========
-} from "./chunk-EF743ZZQ.js";
->>>>>>>> 3e015cf10dd5807aebb34e00948a0920ff3e4e9d:.angular/cache/20.3.2/sakai-ng/vite/deps/chunk-JLPQ2HH5.js
 import {
   DomRendererFactory2,
   EVENT_MANAGER_PLUGINS,
   EventManager,
   EventManagerPlugin,
   SharedStylesHost
-} from "./chunk-Z4CMWAJX.js";
+} from "./chunk-GHLL6EW6.js";
 import {
   CommonModule,
   DomAdapter,
   PLATFORM_BROWSER_ID,
   getDOM,
   setRootDomAdapter
-<<<<<<<< HEAD:.angular/cache/20.3.2/sakai-ng/vite/deps/chunk-EPAOTKY7.js
 } from "./chunk-DK26V7JK.js";
-========
-} from "./chunk-GBQ2DTYR.js";
->>>>>>>> 3e015cf10dd5807aebb34e00948a0920ff3e4e9d:.angular/cache/20.3.2/sakai-ng/vite/deps/chunk-JLPQ2HH5.js
 import {
   XhrFactory,
   parseCookieValue
-} from "./chunk-CEKRWJQT.js";
+} from "./chunk-ZJ25XCV3.js";
 import {
   ApplicationModule,
   ApplicationRef,
@@ -82,7 +74,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-C73YR6D2.js";
+} from "./chunk-6PKVENZL.js";
 import {
   __spreadValues
 } from "./chunk-3OV72XIM.js";
@@ -1331,8 +1323,4 @@ export {
    * License: MIT
    *)
 */
-<<<<<<<< HEAD:.angular/cache/20.3.2/sakai-ng/vite/deps/chunk-EPAOTKY7.js
 //# sourceMappingURL=chunk-EPAOTKY7.js.map
-========
-//# sourceMappingURL=chunk-JLPQ2HH5.js.map
->>>>>>>> 3e015cf10dd5807aebb34e00948a0920ff3e4e9d:.angular/cache/20.3.2/sakai-ng/vite/deps/chunk-JLPQ2HH5.js

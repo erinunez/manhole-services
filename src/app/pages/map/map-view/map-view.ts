@@ -5,9 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import * as L from 'leaflet';
-import 'leaflet.markercluster';
-// import '../../../../leaflet-marker-fix';
-// import './app/leaflet-marker-fix';
+(window as any).L = L;
+// import 'leaflet.markercluster';
+import { loadLeafletMarkerCluster } from '../../../../leaflet-markercluster-loader'
+// import { loadLeafletMarkerCluster } from './leaflet-markercluster-loader';
 
 @Component({
     selector: 'app-map-view',
@@ -38,7 +39,34 @@ export class MapView implements AfterViewInit, OnInit {
     };
 
     ngAfterViewInit(): void {
+        const putrajayaManholeData = [
+            { latLong: '2.9318, 101.6735', name: 'Persiaran Sultan Salahuddin (Roundabout)', status: 'normal' },
+            { latLong: '2.9294, 101.6812', name: 'Lebuh Sentosa - Near Putra Mosque', status: 'normal' },
+            { latLong: '2.9271, 101.6863', name: 'Persiaran Perdana - Ministry of Finance', status: 'alarm' },
+            { latLong: '2.9224, 101.6885', name: 'Persiaran Utara - Precinct 2', status: 'normal' },
+            { latLong: '2.9187, 101.6932', name: 'Persiaran Selatan - Precinct 3', status: 'normal' },
+            { latLong: '2.9152, 101.6990', name: 'Lebuh Sentosa - Taman Wawasan', status: 'normal' },
+            { latLong: '2.9113, 101.7038', name: 'Persiaran Timur - Precinct 4', status: 'normal' },
+            { latLong: '2.9054, 101.7076', name: 'Persiaran Barat - Precinct 5', status: 'alarm' },
+            { latLong: '2.8999, 101.7123', name: 'Persiaran Sultan Salahuddin - Near PICC', status: 'normal' },
+            { latLong: '2.8962, 101.7158', name: 'Putrajaya-Cyberjaya Expressway - Precinct 6', status: 'alarm' },
+            { latLong: '2.9345, 101.6789', name: 'Lebuh Wawasan - Near Government Complex', status: 'normal' },
+            { latLong: '2.9256, 101.6847', name: 'Persiaran Utara - Near Alamanda Mall', status: 'normal' },
+            { latLong: '2.9203, 101.6901', name: 'Lebuh Sentosa - Near IOI City Mall', status: 'alarm' },
+            { latLong: '2.9134, 101.6972', name: 'Persiaran Selatan - Near Pullman Hotel', status: 'normal' },
+            { latLong: '2.9087, 101.7015', name: 'Lebuh Persiaran - Near Equatorial Hotel', status: 'normal' },
+            { latLong: '2.9021, 101.7093', name: 'Persiaran Timur - Near Convention Centre', status: 'alarm' },
+            { latLong: '2.8976, 101.7134', name: 'Persiaran Barat - Near Seri Wawasan Bridge', status: 'normal' },
+            { latLong: '2.8923, 101.7187', name: 'Lebuh Sentosa - Near Seri Gemilang Bridge', status: 'normal' },
+            { latLong: '2.8867, 101.7234', name: 'Putrajaya-Cyberjaya Expressway - Near Cyberjaya', status: 'alarm' },
+            { latLong: '2.8821, 101.7276', name: 'Persiaran Sultan Salahuddin - Near Water Sports Complex', status: 'normal' }
+        ];
+
+        this.listNodes = putrajayaManholeData;
         // this.initMap();
+        setTimeout(() => {
+            this.initClusterMap();
+        }, 2000); // Slightly longer than animation duration
     }
 
     initMap() {
@@ -99,7 +127,11 @@ export class MapView implements AfterViewInit, OnInit {
         }
     }
 
-    initClusterMap() {
+    async initClusterMap() {
+        await loadLeafletMarkerCluster();
+        console.log('Leaflet:', L);
+        console.log('Has markerClusterGroup:', typeof (L as any).markerClusterGroup);
+
         this.map = L.map('map').setView([2.9264, 101.6964], 13); // example coords
 
         // Tile layer (OpenStreetMap)
@@ -116,6 +148,8 @@ export class MapView implements AfterViewInit, OnInit {
         });
 
         // MarkerCluster
+        // const markers = (L as any).markerClusterGroup();
+
         const markers = L.markerClusterGroup();
 
         for (let i = 0; i < this.listNodes.length; i++) {
@@ -204,32 +238,5 @@ export class MapView implements AfterViewInit, OnInit {
         this.closeAlarmDetails();
     }
 
-    ngOnInit(): void {
-        const putrajayaManholeData = [
-            { latLong: '2.9318, 101.6735', name: 'Persiaran Sultan Salahuddin (Roundabout)', status: 'normal' },
-            { latLong: '2.9294, 101.6812', name: 'Lebuh Sentosa - Near Putra Mosque', status: 'normal' },
-            { latLong: '2.9271, 101.6863', name: 'Persiaran Perdana - Ministry of Finance', status: 'alarm' },
-            { latLong: '2.9224, 101.6885', name: 'Persiaran Utara - Precinct 2', status: 'normal' },
-            { latLong: '2.9187, 101.6932', name: 'Persiaran Selatan - Precinct 3', status: 'normal' },
-            { latLong: '2.9152, 101.6990', name: 'Lebuh Sentosa - Taman Wawasan', status: 'normal' },
-            { latLong: '2.9113, 101.7038', name: 'Persiaran Timur - Precinct 4', status: 'normal' },
-            { latLong: '2.9054, 101.7076', name: 'Persiaran Barat - Precinct 5', status: 'alarm' },
-            { latLong: '2.8999, 101.7123', name: 'Persiaran Sultan Salahuddin - Near PICC', status: 'normal' },
-            { latLong: '2.8962, 101.7158', name: 'Putrajaya-Cyberjaya Expressway - Precinct 6', status: 'alarm' },
-            { latLong: '2.9345, 101.6789', name: 'Lebuh Wawasan - Near Government Complex', status: 'normal' },
-            { latLong: '2.9256, 101.6847', name: 'Persiaran Utara - Near Alamanda Mall', status: 'normal' },
-            { latLong: '2.9203, 101.6901', name: 'Lebuh Sentosa - Near IOI City Mall', status: 'alarm' },
-            { latLong: '2.9134, 101.6972', name: 'Persiaran Selatan - Near Pullman Hotel', status: 'normal' },
-            { latLong: '2.9087, 101.7015', name: 'Lebuh Persiaran - Near Equatorial Hotel', status: 'normal' },
-            { latLong: '2.9021, 101.7093', name: 'Persiaran Timur - Near Convention Centre', status: 'alarm' },
-            { latLong: '2.8976, 101.7134', name: 'Persiaran Barat - Near Seri Wawasan Bridge', status: 'normal' },
-            { latLong: '2.8923, 101.7187', name: 'Lebuh Sentosa - Near Seri Gemilang Bridge', status: 'normal' },
-            { latLong: '2.8867, 101.7234', name: 'Putrajaya-Cyberjaya Expressway - Near Cyberjaya', status: 'alarm' },
-            { latLong: '2.8821, 101.7276', name: 'Persiaran Sultan Salahuddin - Near Water Sports Complex', status: 'normal' }
-        ];
-
-        this.listNodes = putrajayaManholeData;
-        // this.initMap();
-        this.initClusterMap();
-    }
+    ngOnInit(): void {}
 }
